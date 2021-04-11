@@ -33,7 +33,17 @@ public class PlayerAnimationController : MonoBehaviour
                 myAnimator.Play("Jump", -1, 0.0f);
 
             }
-            else if (Input.GetKeyDown(KeyCode.W))
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                myAnimator.Play("Jump Over", -1, 0.0f);
+
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                myAnimator.Play("Running Jump", -1, 0.0f);
+
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
             {
                 myAnimator.Play("Big Jump", -1, 0.0f);
 
