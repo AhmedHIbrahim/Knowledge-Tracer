@@ -3,24 +3,43 @@ using UnityEngine;
 // attach the script to the player
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5;
-    public Rigidbody rb;
-    float horizontalInput;
+    CharacterController characterController;
+    Vector3 runDirection;
+    public float runSpeed = 5;
+
+    int lane = 1;  // 0:left 1:middle 2:right
+    public float laneWidth = 2.5f;
+    public float smooth;
 
     bool isMoveStarted = false;
 
-    void Update()
+
+    void Start()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        characterController = GetComponent<CharacterController>();
     }
 
-    private void FixedUpdate()
+    void Update()
     {
         if (isMoveStarted)
         {
-            Move();
+            ProcessUserInput();
         }
 
+    }
+
+    void FixedUpdate()
+    {
+        if (isMoveStarted)
+        {
+            Run();
+        }
+
+    }
+
+    private void LateUpdate()
+    {
+        CalculateNewXPosition();
     }
 
     public void StartMoving()
@@ -28,12 +47,42 @@ public class PlayerMovement : MonoBehaviour
         isMoveStarted = true;
     }
 
-    void Move()
+    void Run()
     {
-        // transform.forwad is z
-        Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
-        Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + forwardMove + horizontalMove);
+        runDirection.z = runSpeed;
+        characterController.Move(runDirection * Time.fixedDeltaTime);
+    }
+
+    void ProcessUserInput()
+    {
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && lane > 0)
+        {
+            lane--;
+        }
+
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && lane < 2)
+        {
+            lane++;
+        }
+
+
+    }
+
+    void CalculateNewXPosition()
+    {
+        Vector3 newPosition = transform.localPosition.z * transform.forward + transform.localPosition.y * transform.up;
+        if (lane == 0)
+        {
+            newPosition += Vector3.left * laneWidth;
+        }
+        else if (lane == 2)
+        {
+            newPosition += Vector3.right * laneWidth;
+        }
+
+        transform.localPosition = Vector3.Lerp(transform.localPosition, newPosition, smooth);
+        characterController.center = characterController.center;
+
     }
 
 }

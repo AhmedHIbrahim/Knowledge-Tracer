@@ -28,6 +28,12 @@ public class PlayerAnimationController : MonoBehaviour
         }
         else
         {
+            // it won't allow an animation to play while another animation is playing
+            if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fast Run"))
+            {
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 myAnimator.Play("Jump", -1, 0.0f);
