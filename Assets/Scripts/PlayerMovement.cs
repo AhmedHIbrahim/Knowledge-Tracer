@@ -3,86 +3,55 @@ using UnityEngine;
 // attach the script to the player
 public class PlayerMovement : MonoBehaviour
 {
-    CharacterController characterController;
-    Vector3 runDirection;
-    public float runSpeed = 5;
+    public float _moveSpeed = 5f;
+    public float runSpeed = 1f;
+    public float _jumpSpeed = 3.5f;
+    public float _gravity = 9.81f;
 
-    int lane = 1;  // 0:left 1:middle 2:right
-    public float laneWidth = 2.5f;
-    public float smooth;
+    private float _directionY;
+    private CharacterController _controller;
 
     bool isMoveStarted = false;
 
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
     }
 
+    // Update is called once per frame
     void Update()
     {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
+
+
+
         if (isMoveStarted)
         {
-            ProcessUserInput();
+            direction.z = runSpeed;
+
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                _directionY = _jumpSpeed;
+            }
         }
+        _directionY -= _gravity * Time.deltaTime;
 
+        direction.y = _directionY;
+
+        _controller.Move(direction * _moveSpeed * Time.deltaTime);
     }
 
-    void FixedUpdate()
-    {
-        if (isMoveStarted)
-        {
-            Run();
-        }
 
-    }
-
-    private void LateUpdate()
-    {
-        CalculateNewXPosition();
-    }
 
     public void StartMoving()
     {
         isMoveStarted = true;
     }
 
-    void Run()
-    {
-        runDirection.z = runSpeed;
-        characterController.Move(runDirection * Time.fixedDeltaTime);
-    }
-
-    void ProcessUserInput()
-    {
-        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && lane > 0)
-        {
-            lane--;
-        }
-
-        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && lane < 2)
-        {
-            lane++;
-        }
-
-
-    }
-
-    void CalculateNewXPosition()
-    {
-        Vector3 newPosition = transform.localPosition.z * transform.forward + transform.localPosition.y * transform.up;
-        if (lane == 0)
-        {
-            newPosition += Vector3.left * laneWidth;
-        }
-        else if (lane == 2)
-        {
-            newPosition += Vector3.right * laneWidth;
-        }
-
-        transform.localPosition = Vector3.Lerp(transform.localPosition, newPosition, smooth);
-        characterController.center = characterController.center;
-
-    }
 
 }
