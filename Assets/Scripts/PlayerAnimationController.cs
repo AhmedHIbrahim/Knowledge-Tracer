@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    public static Animator myAnimator;
+    public Animator myAnimator;
     bool isGameStarted = false;
     PlayerMovement movementScript;
 
@@ -20,7 +20,7 @@ public class PlayerAnimationController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
             {
-                myAnimator.Play("Fast Run", -1, 0.0f);
+                myAnimator.Play("FastRun", -1, 0.0f);
                 movementScript.StartMoving();
                 isGameStarted = true;
 
@@ -29,26 +29,26 @@ public class PlayerAnimationController : MonoBehaviour
         else
         {
             // it won't allow an animation to play while another animation is playing
-            if (!IsRunning())
+            if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsName("FastRun"))
             {
                 return;
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                myAnimator.Play("Jump", -1, 0.0f);
+                myAnimator.Play("JumpOverStart", -1, 0.0f);
 
 
             }
             else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                myAnimator.Play("Jump Over Start", -1, 0.0f);
+                myAnimator.Play("RunningJump", -1, 0.0f);
 
 
             }
-            else if (Input.GetKeyDown(KeyCode.Q))
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                myAnimator.Play("Running Jump", -1, 0.0f);
+                myAnimator.Play("Sliding", -1, 0.0f);
 
 
             }
@@ -60,15 +60,4 @@ public class PlayerAnimationController : MonoBehaviour
 
     }
 
-    public static bool IsRunning()
-    {
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fast Run"))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }

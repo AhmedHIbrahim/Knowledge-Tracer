@@ -3,8 +3,8 @@ using UnityEngine;
 // attach the script to the player
 public class PlayerMovement : MonoBehaviour
 {
-    public float runSpeed = 1f;
-    public float jumpSpeed = 3.5f;
+    public float runSpeed = 2.3f;
+    public float jumpSpeed = 4.5f;
     public float gravity = 9.81f;
     public float laneWidth = 2.5f;
     public float smooth;
@@ -34,18 +34,20 @@ public class PlayerMovement : MonoBehaviour
             ProcessUserInput();
             direction.z = runSpeed;
 
+            HandleSliding();
 
             if (Input.GetKeyDown(KeyCode.Space) ||
                 Input.GetKeyDown(KeyCode.W) ||
-                Input.GetKeyDown(KeyCode.UpArrow) ||
-                Input.GetKeyDown(KeyCode.Q))
+                Input.GetKeyDown(KeyCode.UpArrow)
+                )
             {
-                if (!PlayerAnimationController.IsRunning())
+
+                if (!controller.isGrounded && !gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FastRun"))
                 {
                     return;
                 }
 
-                directionY = jumpSpeed;
+                directionY = jumpSpeed * Time.deltaTime;
             }
 
             directionY -= gravity * Time.deltaTime;
@@ -84,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     void UpdateXPosition()
     {
 
-        if (!PlayerAnimationController.IsRunning())
+        if (!controller.isGrounded)
         {
             return;
         }
@@ -102,5 +104,36 @@ public class PlayerMovement : MonoBehaviour
         controller.center = controller.center;
 
     }
+
+    void HandleSliding()
+    {
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            controller.height = 2f;
+            Vector3 tempCenter = controller.center;
+            tempCenter.y = controller.height / 2;
+            controller.center = tempCenter;
+
+        }
+        else
+        {
+            Invoke("SetCenter", 2000f);
+
+        }
+    }
+
+
+    void SetCenter()
+    {
+
+        Vector3 tempCenter = controller.center;
+        tempCenter.y = 1.91f;
+        controller.center = tempCenter;
+
+        controller.height = 3.64f;
+
+    }
+
+
 
 }
