@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    public Animator myAnimator;
+    public static Animator myAnimator;
     bool isGameStarted = false;
     PlayerMovement movementScript;
 
@@ -29,7 +29,7 @@ public class PlayerAnimationController : MonoBehaviour
         else
         {
             // it won't allow an animation to play while another animation is playing
-            if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fast Run"))
+            if (!IsRunning())
             {
                 return;
             }
@@ -38,26 +38,37 @@ public class PlayerAnimationController : MonoBehaviour
             {
                 myAnimator.Play("Jump", -1, 0.0f);
 
+
             }
             else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                myAnimator.Play("Jump Over", -1, 0.0f);
+                myAnimator.Play("Jump Over Start", -1, 0.0f);
+
 
             }
             else if (Input.GetKeyDown(KeyCode.Q))
             {
                 myAnimator.Play("Running Jump", -1, 0.0f);
 
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                myAnimator.Play("Big Jump", -1, 0.0f);
 
             }
+
 
         }
 
 
 
+    }
+
+    public static bool IsRunning()
+    {
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Fast Run"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

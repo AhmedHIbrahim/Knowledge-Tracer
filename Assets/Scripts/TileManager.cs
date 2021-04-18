@@ -13,7 +13,12 @@ public class TileManager : MonoBehaviour
     private List<GameObject> activeTiles = new List<GameObject>();
 
     public Transform playerTransform;
-    public Transform terrainTransform;
+
+
+    // ----------
+
+    public GameObject[] obstacles;
+
     void Start()
     {
         for (int i = 0; i < numberOfTiles; i++)
