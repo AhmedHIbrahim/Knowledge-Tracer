@@ -14,11 +14,6 @@ public class TileManager : MonoBehaviour
 
     public Transform playerTransform;
 
-
-    // ----------
-
-    public GameObject[] obstacles;
-
     void Start()
     {
         for (int i = 0; i < numberOfTiles; i++)
@@ -54,5 +49,6 @@ public class TileManager : MonoBehaviour
     {
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);
+
     }
 }
