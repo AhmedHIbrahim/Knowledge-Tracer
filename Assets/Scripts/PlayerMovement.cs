@@ -3,13 +3,14 @@ using UnityEngine;
 // attach the script to the player
 public class PlayerMovement : MonoBehaviour
 {
-    public float runSpeed = 110f;
+    public float runSpeed = 140f;
     public float jumpSpeed = 9f;
     public float gravity = 9.81f;
     public float laneWidth = 2.5f;
     public float smooth;
 
     CharacterController controller;
+    Vector3 direction;
     float directionY;
     bool isMoveStarted = false;
 
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        direction = new Vector3(0, 0, 0);
     }
 
 
@@ -29,44 +31,40 @@ public class PlayerMovement : MonoBehaviour
         if (isMoveStarted)
         {
 
-            Vector3 direction = new Vector3(0, 0, 0);
 
             ProcessUserInput();
             direction.z = runSpeed * Time.deltaTime;
-
             HandleSliding();
+            Run();
 
-            if (Input.GetKeyDown(KeyCode.Space) ||
-                Input.GetKeyDown(KeyCode.W) ||
-                Input.GetKeyDown(KeyCode.UpArrow)
-                )
-            {
-
-                if (controller.isGrounded && gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FastRun"))
-                {
-                    directionY = jumpSpeed;
-                }
-
-
-            }
-
-            directionY -= gravity * Time.deltaTime;
-
-            direction.y = directionY;
-
-            controller.Move(direction * Time.deltaTime);
         }
+
 
     }
 
-    private void LateUpdate()
+    void Jump()
+    {
+            directionY = jumpSpeed;
+    }
+
+    void Run()
+    {
+
+        directionY -= gravity * Time.deltaTime;
+        direction.y = directionY;
+        controller.Move(direction * Time.deltaTime);
+    }
+
+
+    void LateUpdate()
     {
         UpdateXPosition();
     }
 
-    public void StartMoving()
+    void StartMoving()
     {
         isMoveStarted = true;
+        GameObject.Find("TileManager").SendMessage("PlayEnvironmentSound");
     }
 
     void ProcessUserInput()
@@ -101,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, newPosition, smooth);
-        controller.center = controller.center;
 
     }
 

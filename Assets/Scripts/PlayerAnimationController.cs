@@ -4,12 +4,12 @@ public class PlayerAnimationController : MonoBehaviour
 {
     public Animator myAnimator;
     bool isGameStarted = false;
-    PlayerMovement movementScript;
+
 
     void Start()
     {
         myAnimator = GetComponent<Animator>();
-        movementScript = gameObject.GetComponent<PlayerMovement>();
+
 
     }
 
@@ -21,7 +21,7 @@ public class PlayerAnimationController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
             {
                 myAnimator.Play("FastRun", -1, 0.0f);
-                movementScript.StartMoving();
+                gameObject.SendMessage("StartMoving");
                 isGameStarted = true;
 
             }
@@ -37,25 +37,23 @@ public class PlayerAnimationController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 myAnimator.Play("JumpOverStart", -1, 0.0f);
-
+                gameObject.SendMessage("Jump");
 
             }
             else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 myAnimator.Play("RunningJump", -1, 0.0f);
-
+                gameObject.SendMessage("Jump");
 
             }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 myAnimator.Play("Sliding", -1, 0.0f);
 
-
             }
 
 
         }
-
 
 
     }
