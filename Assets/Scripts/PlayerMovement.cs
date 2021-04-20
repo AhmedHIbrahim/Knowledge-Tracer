@@ -3,8 +3,8 @@ using UnityEngine;
 // attach the script to the player
 public class PlayerMovement : MonoBehaviour
 {
-    public float runSpeed = 2.3f;
-    public float jumpSpeed = 4.5f;
+    public float runSpeed = 110f;
+    public float jumpSpeed = 9f;
     public float gravity = 9.81f;
     public float laneWidth = 2.5f;
     public float smooth;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 direction = new Vector3(0, 0, 0);
 
             ProcessUserInput();
-            direction.z = runSpeed;
+            direction.z = runSpeed * Time.deltaTime;
 
             HandleSliding();
 
@@ -42,19 +42,19 @@ public class PlayerMovement : MonoBehaviour
                 )
             {
 
-                if (!controller.isGrounded && !gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FastRun"))
+                if (controller.isGrounded && gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FastRun"))
                 {
-                    return;
+                    directionY = jumpSpeed;
                 }
 
-                directionY = jumpSpeed * Time.deltaTime;
+
             }
 
             directionY -= gravity * Time.deltaTime;
 
             direction.y = directionY;
 
-            controller.Move(direction * runSpeed * Time.deltaTime);
+            controller.Move(direction * Time.deltaTime);
         }
 
     }
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            controller.height = 2f;
+            controller.height = 1.5f;
             Vector3 tempCenter = controller.center;
             tempCenter.y = controller.height / 2;
             controller.center = tempCenter;
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Invoke("SetCenter", 2000f);
+            Invoke("SetCenter", 3000f);
 
         }
     }
