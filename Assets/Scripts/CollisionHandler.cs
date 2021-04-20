@@ -4,21 +4,21 @@ public class CollisionHandler : MonoBehaviour
 {
 
     AudioSource audioSource;
-    public AudioClip audioClip;
+    public AudioClip collisionClip;
 
 
-    private void Start()
+    void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
     }
 
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.tag == "Obstacle" && !audioSource.isPlaying)
         {
 
-            audioSource.PlayOneShot(audioClip);
+            audioSource.PlayOneShot(collisionClip);
         }
     }
 

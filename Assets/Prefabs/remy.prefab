@@ -2383,6 +2383,7 @@ GameObject:
   - component: {fileID: 7650247901756379762}
   - component: {fileID: 7650247901756379757}
   - component: {fileID: 7650247901756379760}
+  - component: {fileID: 1189501567}
   m_Layer: 0
   m_Name: remy
   m_TagString: Untagged
@@ -2474,9 +2475,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b0653bc61ca804cbbda75894a69439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 5
-  laneWidth: 4
-  smooth: 80
+  runSpeed: 120
+  jumpSpeed: 9
+  gravity: 9.81
+  laneWidth: 2.5
+  smooth: 10
+--- !u!114 &1189501567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7415821369003372580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3096b46963d2f2647b96808a16637bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 42fb8c5eb5ec06a42b2cf695d5f87404, type: 3}
 --- !u!1 &7508628217484676915
 GameObject:
   m_ObjectHideFlags: 0

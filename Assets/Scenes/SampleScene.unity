@@ -248,24 +248,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1189501562 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7415821369003372580, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
-  m_PrefabInstance: {fileID: 7650247903109862114}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1189501567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189501562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3096b46963d2f2647b96808a16637bd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 42fb8c5eb5ec06a42b2cf695d5f87404, type: 3}
 --- !u!1 &1378182631
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,26 +436,6 @@ PrefabInstance:
     - target: {fileID: 7415821369003372580, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
       propertyPath: m_Name
       value: remy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650247901756379760, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
-      propertyPath: smooth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650247901756379760, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
-      propertyPath: gravity
-      value: 9.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650247901756379760, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
-      propertyPath: runSpeed
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650247901756379760, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
-      propertyPath: jumpSpeed
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650247901756379760, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
-      propertyPath: laneWidth
-      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7899765173433543326, guid: 990b4d8f5864bf949a0c5522092bc9b1, type: 3}
       propertyPath: m_RootOrder
