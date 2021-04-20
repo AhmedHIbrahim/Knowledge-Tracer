@@ -113,24 +113,21 @@ public class PlayerMovement : MonoBehaviour
             Vector3 tempCenter = controller.center;
             tempCenter.y = controller.height / 2;
             controller.center = tempCenter;
+            Invoke("SetCenter", 2f);
 
         }
-        else
-        {
-            Invoke("SetCenter", 3000f);
 
-        }
     }
 
 
     void SetCenter()
     {
-
+        Debug.Log("SetCenter is called");
+        controller.height = 3.64f;
         Vector3 tempCenter = controller.center;
         tempCenter.y = 1.91f;
         controller.center = tempCenter;
 
-        controller.height = 3.64f;
 
     }
 

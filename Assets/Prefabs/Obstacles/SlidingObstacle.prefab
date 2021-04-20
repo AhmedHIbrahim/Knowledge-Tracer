@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &2525764546293399249
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3442946193642659230}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.099999994, y: 0.099999994, z: 1.1999999}
-  m_Center: {x: 0, y: 0, z: 0.59999996}
 --- !u!1 &4168366463058354486
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1675198669525028414}
+  - component: {fileID: 1917622902688731776}
   m_Layer: 0
   m_Name: SlidingObstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,32 +34,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &301852273634683135
+--- !u!65 &1917622902688731776
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5948054549682764839}
+  m_GameObject: {fileID: 4168366463058354486}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.099999994, y: 0.10000002, z: 1.2000002}
-  m_Center: {x: 0, y: 0, z: 0.6000001}
---- !u!65 &3412452338171225894
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6581260628053515078}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.099999994, y: 0.10000002, z: 1.2000002}
-  m_Center: {x: 0, y: 0, z: 0.6000001}
+  m_Size: {x: 5.7675405, y: 0.38671064, z: 0.3939389}
+  m_Center: {x: -0.01575017, y: 2.185691, z: 0.00074496865}
 --- !u!1001 &3441234712428564830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,11 +120,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
---- !u!1 &3442946193642659230 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1818520758701248, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
-  m_PrefabInstance: {fileID: 3441234712428564830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3445510127651964856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4874726471669478, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
@@ -228,11 +198,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
---- !u!1 &5948054549682764839 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1818520758701248, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
-  m_PrefabInstance: {fileID: 5948632741521813735}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5952800481424369153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4874726471669478, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
@@ -311,11 +276,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
---- !u!1 &6581260628053515078 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1818520758701248, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
-  m_PrefabInstance: {fileID: 6580638953973618566}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6575943522557002080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4874726471669478, guid: 8cd20944e00c28748892bca4cb278785, type: 3}
