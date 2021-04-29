@@ -39,6 +39,7 @@ public class QuestionAnswerManager : MonoBehaviour
 
 
     public QuestionList questionList = new QuestionList();
+
     void Start()
     {
         questionList = JsonUtility.FromJson<QuestionList>(questions.text);
@@ -54,13 +55,18 @@ public class QuestionAnswerManager : MonoBehaviour
     {
         if (lastIndex != currentIndex)
         {
-            currentIndex++;
+            //currentIndex++;
+            currentIndex = Random.Range(0, questionList.questions.Length);
+            Debug.Log("QUESTION INDEX: " + currentIndex);
+
+
+
             questionBody.text = questionList.questions[currentIndex].Q.ToString();
             answerABody.text = questionList.questions[currentIndex].A.ToString();
             answerBBody.text = questionList.questions[currentIndex].B.ToString();
             answerCBody.text = questionList.questions[currentIndex].C.ToString();
-
         }
+
         if (playerTransform.position.z - 5 > zSpawn - spawnLength)
         {
             SpawnAnswerIcons();
@@ -75,6 +81,11 @@ public class QuestionAnswerManager : MonoBehaviour
             score++;
             scoreBody.text = "" + (score * 100);
             lastIndex++;
+        }
+        else if (score != 0)
+        {
+            score--;
+            scoreBody.text = "" + (score * 100);
         }
     }
     public void SpawnAnswerIcons()
