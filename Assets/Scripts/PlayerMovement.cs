@@ -9,6 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public float laneWidth = 2.5f;
     public float smooth;
 
+    public float minRunSpeed = 130f;
+    public float maxRunSpeed = 250f;
+    public float accelerationTime = 60;
+    private float time;
+
     CharacterController controller;
     Vector3 direction;
     float directionY;
@@ -20,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         direction = new Vector3(0, 0, 0);
+        time = 0;
     }
 
 
@@ -28,10 +34,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (isMoveStarted)
         {
+
+            runSpeed = Mathf.SmoothStep(minRunSpeed, maxRunSpeed, time / accelerationTime);
+            Debug.Log(runSpeed);
+            time += Time.deltaTime;
+
             ProcessUserInput();
             direction.z = runSpeed * Time.deltaTime;
             HandleSliding();
             Run();
+
 
         }
 
@@ -123,6 +135,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
+    void UpdateRunSpeed()
+    {
+        runSpeed = runSpeed + 1;
+    }
 
 }

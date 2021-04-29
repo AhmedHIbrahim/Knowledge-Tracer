@@ -7,6 +7,10 @@ public class QuestionAnswerManager : MonoBehaviour
     public GameObject AnswerIcons;
     public Transform playerTransform;
 
+    AudioSource audioSource;
+    public AudioClip successClip;
+    public AudioClip failureClip;
+
     public TextAsset questions;
     public Text questionBody;
     public Text answerABody;
@@ -43,8 +47,9 @@ public class QuestionAnswerManager : MonoBehaviour
     void Start()
     {
 
+        audioSource = gameObject.GetComponent<AudioSource>();
+
         currentIndex = Random.Range(0, questionList.questions.Length);
-        Debug.Log("QUESTION INDEX: " + currentIndex);
 
         questionList = JsonUtility.FromJson<QuestionList>(questions.text);
         questionBody.text = questionList.questions[currentIndex].Q.ToString();
@@ -60,7 +65,6 @@ public class QuestionAnswerManager : MonoBehaviour
         if (lastIndex == currentIndex)
         {
             currentIndex = Random.Range(0, questionList.questions.Length);
-            Debug.Log("QUESTION INDEX: " + currentIndex);
 
             questionBody.text = questionList.questions[currentIndex].Q.ToString();
             answerABody.text = questionList.questions[currentIndex].A.ToString();
@@ -79,14 +83,21 @@ public class QuestionAnswerManager : MonoBehaviour
     {
         if (questionList.questions[currentIndex].correct_answer == tag)
         {
+            audioSource.PlayOneShot(successClip);
+
             score++;
             scoreBody.text = "" + (score * 100);
             lastIndex = currentIndex;
         }
         else if (score != 0)
         {
+            audioSource.PlayOneShot(failureClip);
             score--;
             scoreBody.text = "" + (score * 100);
+        }
+        else
+        {
+            audioSource.PlayOneShot(failureClip);
         }
     }
     public void SpawnAnswerIcons()
