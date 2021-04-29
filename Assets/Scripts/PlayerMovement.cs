@@ -13,8 +13,6 @@ public class PlayerMovement : MonoBehaviour
     Vector3 direction;
     float directionY;
     bool isMoveStarted = false;
-
-
     int lane = 1;  // 0:left 1:middle 2:righ;
 
 
@@ -30,8 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isMoveStarted)
         {
-
-
             ProcessUserInput();
             direction.z = runSpeed * Time.deltaTime;
             HandleSliding();
@@ -42,9 +38,15 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
+    void LateUpdate()
+    {
+        UpdateXPosition();
+    }
+
     void Jump()
     {
-            directionY = jumpSpeed;
+        directionY = jumpSpeed;
     }
 
     void Run()
@@ -55,17 +57,12 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(direction * Time.deltaTime);
     }
 
-
-    void LateUpdate()
-    {
-        UpdateXPosition();
-    }
-
     void StartMoving()
     {
         isMoveStarted = true;
         GameObject.Find("TileManager").SendMessage("PlayEnvironmentSound");
     }
+
 
     void ProcessUserInput()
     {

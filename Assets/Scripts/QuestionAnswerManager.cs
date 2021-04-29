@@ -14,7 +14,7 @@ public class QuestionAnswerManager : MonoBehaviour
     public Text answerCBody;
     public Text scoreBody;
 
-    int currentIndex = 0;
+    int currentIndex;
     int lastIndex = 0;
     public int zSpawn = -15;
     public int spawnLength = 30;
@@ -42,6 +42,10 @@ public class QuestionAnswerManager : MonoBehaviour
 
     void Start()
     {
+
+        currentIndex = Random.Range(0, questionList.questions.Length);
+        Debug.Log("QUESTION INDEX: " + currentIndex);
+
         questionList = JsonUtility.FromJson<QuestionList>(questions.text);
         questionBody.text = questionList.questions[currentIndex].Q.ToString();
         answerABody.text = questionList.questions[currentIndex].A.ToString();
@@ -53,13 +57,10 @@ public class QuestionAnswerManager : MonoBehaviour
 
     void Update()
     {
-        if (lastIndex != currentIndex)
+        if (lastIndex == currentIndex)
         {
-            //currentIndex++;
             currentIndex = Random.Range(0, questionList.questions.Length);
             Debug.Log("QUESTION INDEX: " + currentIndex);
-
-
 
             questionBody.text = questionList.questions[currentIndex].Q.ToString();
             answerABody.text = questionList.questions[currentIndex].A.ToString();
@@ -80,7 +81,7 @@ public class QuestionAnswerManager : MonoBehaviour
         {
             score++;
             scoreBody.text = "" + (score * 100);
-            lastIndex++;
+            lastIndex = currentIndex;
         }
         else if (score != 0)
         {
