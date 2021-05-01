@@ -108,4 +108,9 @@ public class QuestionAnswerManager : MonoBehaviour
 
     }
 
+    public int GetScore()
+    {
+        return score * 100;
+    }
+
 }

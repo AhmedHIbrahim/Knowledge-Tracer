@@ -6,6 +6,7 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip collisionClip;
+    public GameObject CanvasManager;
 
     int numOfCollisions;
     public Image mask;
@@ -25,10 +26,11 @@ public class CollisionHandler : MonoBehaviour
 
             audioSource.PlayOneShot(collisionClip);
             numOfCollisions++;
-            mask.fillAmount = (20f - numOfCollisions) / 20f;
+            mask.fillAmount = (5f - numOfCollisions) / 5f;
             if (mask.fillAmount == 0)
             {
-                Debug.Log("GAME OVER");
+                CanvasManager.GetComponent<CanvasManager>().GameOver();
+
             }
         }
     }

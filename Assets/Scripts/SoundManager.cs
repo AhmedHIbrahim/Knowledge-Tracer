@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
     public void PlayEnvironmentSound()
     {
         audioSource.loop = true;
-        audioSource.volume = 1;
+        audioSource.volume = 0.3f;
         audioSource.clip = envClip;
         audioSource.Play();
     }
