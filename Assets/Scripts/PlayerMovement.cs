@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             runSpeed = Mathf.SmoothStep(minRunSpeed, maxRunSpeed, time / accelerationTime);
-            Debug.Log(runSpeed);
+
             time += Time.deltaTime;
 
             ProcessUserInput();

@@ -8,10 +8,29 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
+
+
     }
 
-    void PlayEnvironmentSound()
+    public void PlayEnvironmentSound()
     {
-        audioSource.PlayOneShot(envClip);
+        audioSource.loop = true;
+        audioSource.volume = 1;
+        audioSource.clip = envClip;
+        audioSource.Play();
     }
+
+    public void PauseSound()
+    {
+        if (audioSource != null)
+            audioSource.Pause();
+
+    }
+
+    public void ResumeSound()
+    {
+        if (audioSource != null)
+            audioSource.Play();
+    }
+
 }

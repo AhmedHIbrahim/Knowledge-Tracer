@@ -2383,12 +2383,11 @@ GameObject:
   - component: {fileID: 7650247901756379762}
   - component: {fileID: 7650247901756379757}
   - component: {fileID: 7650247901756379760}
-  - component: {fileID: 7871845953829147122}
   - component: {fileID: 1189501567}
   - component: {fileID: 5626450805563634826}
   m_Layer: 0
   m_Name: remy
-  m_TagString: Obstacle
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2477,23 +2476,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b0653bc61ca804cbbda75894a69439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 120
+  runSpeed: 160
   jumpSpeed: 9
   gravity: 9.81
   laneWidth: 2.5
   smooth: 10
---- !u!114 &7871845953829147122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7415821369003372580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1bd16fc886015740847bc90f845a6bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  minRunSpeed: 130
+  maxRunSpeed: 250
+  accelerationTime: 60
 --- !u!114 &1189501567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2507,6 +2497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionClip: {fileID: 8300000, guid: 42fb8c5eb5ec06a42b2cf695d5f87404, type: 3}
+  mask: {fileID: 0}
 --- !u!82 &5626450805563634826
 AudioSource:
   m_ObjectHideFlags: 0

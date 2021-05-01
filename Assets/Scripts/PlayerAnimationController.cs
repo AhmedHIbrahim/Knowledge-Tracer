@@ -10,20 +10,26 @@ public class PlayerAnimationController : MonoBehaviour
     {
         myAnimator = GetComponent<Animator>();
 
+    }
 
+    public void StartAnimation()
+    {
+        if (!isGameStarted)
+        {
+            myAnimator.Play("FastRun", -1, 0.0f);
+            gameObject.SendMessage("StartMoving");
+            isGameStarted = true;
+
+        }
     }
 
     void Update()
     {
-
         if (!isGameStarted)
         {
-            if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
             {
-                myAnimator.Play("FastRun", -1, 0.0f);
-                gameObject.SendMessage("StartMoving");
-                isGameStarted = true;
-
+                StartAnimation();
             }
         }
         else
