@@ -26,7 +26,7 @@ public class CollisionHandler : MonoBehaviour
 
             audioSource.PlayOneShot(collisionClip);
             numOfCollisions++;
-            mask.fillAmount = (5f - numOfCollisions) / 5f;
+            mask.fillAmount = (10f - numOfCollisions) / 10f;
             if (mask.fillAmount == 0)
             {
                 CanvasManager.GetComponent<CanvasManager>().GameOver();

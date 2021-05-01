@@ -760,7 +760,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1378023003}
   gameOverPanel: {fileID: 551281960}
   yourScoreBody: {fileID: 1479234401}
-  heighestScoreBody: {fileID: 2036892058}
+  highestScoreBody: {fileID: 2036892058}
 --- !u!4 &485659367
 Transform:
   m_ObjectHideFlags: 0

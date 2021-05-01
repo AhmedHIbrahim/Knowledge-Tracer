@@ -11,8 +11,13 @@ public class CanvasManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gameOverPanel;
     public TextMeshProUGUI yourScoreBody;
-    public TextMeshProUGUI heighestScoreBody;
+    public TextMeshProUGUI highestScoreBody;
+    int highestScore = 0;
 
+    void Start()
+    {
+        highestScore = PlayerPrefs.GetInt("HighestScore", 0);
+    }
 
     void Update()
     {
@@ -63,12 +68,19 @@ public class CanvasManager : MonoBehaviour
 
     public void GameOver()
     {
+
         int score = tileManager.GetComponent<QuestionAnswerManager>().GetScore();
         PauseGame();
         pauseMenu.SetActive(false);
         gameOverPanel.SetActive(true);
         yourScoreBody.text = score.ToString();
-        heighestScoreBody.text = score.ToString();
+        highestScoreBody.text = highestScore.ToString();
+
+        if (score > highestScore)
+        {
+            highestScore = score;
+            PlayerPrefs.SetInt("HighestScore", highestScore);
+        }
 
     }
 
