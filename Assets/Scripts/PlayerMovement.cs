@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float smooth;
 
     public float minRunSpeed = 130f;
-    public float maxRunSpeed = 250f;
-    public float accelerationTime = 60;
+    public float maxRunSpeed = 200f;
+    public float accelerationTime = 180f;
     private float time;
 
     CharacterController controller;
