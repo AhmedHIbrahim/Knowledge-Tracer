@@ -3,14 +3,14 @@ using UnityEngine;
 // attach the script to the player
 public class PlayerMovement : MonoBehaviour
 {
-    public float runSpeed = 140f;
+    public float runSpeed = 60f;
     public float jumpSpeed = 9f;
     public float gravity = 9.81f;
     public float laneWidth = 2.5f;
     public float smooth;
 
-    public float minRunSpeed = 130f;
-    public float maxRunSpeed = 200f;
+    public float minRunSpeed = 60f;
+    public float maxRunSpeed = 120f;
     public float accelerationTime = 180f;
     private float time;
 
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
             newPosition += Vector3.right * laneWidth;
         }
 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, newPosition, smooth);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, newPosition, smooth * Time.deltaTime);
 
     }
 
