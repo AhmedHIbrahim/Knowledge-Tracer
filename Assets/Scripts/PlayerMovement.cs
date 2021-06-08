@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 // attach the script to the player
 public class PlayerMovement : MonoBehaviour
 {
+    public Text textHints;
     public float runSpeed = 60f;
     public float jumpSpeed = 9f;
     public float gravity = 9.81f;
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         direction = new Vector3(0, 0, 0);
         time = 0;
+
     }
 
 
@@ -45,6 +48,10 @@ public class PlayerMovement : MonoBehaviour
             Run();
 
 
+        }
+        else
+        {
+            textHints.SendMessage("ShowHint", "Press Enter to start the game ... ");
         }
 
 
