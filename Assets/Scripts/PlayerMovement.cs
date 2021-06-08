@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public Text textHints;
-    public float runSpeed = 60f;
+    public float runSpeed = 70f;
     public float jumpSpeed = 9f;
     public float gravity = 9.81f;
     public float laneWidth = 2.5f;
     public float smooth;
 
-    public float minRunSpeed = 60f;
+    public float minRunSpeed = 70f;
     public float maxRunSpeed = 120f;
     public float accelerationTime = 180f;
     private float time;
